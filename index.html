@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>To Do App</title>
+</head>
+
+<body>
+    <header>
+        <form id="add-task-form">
+            <h1>Create Task</h1>
+            <!-- <label for="task">Task:</label> -->
+            <input type="text" id="task" name="task" placeholder="Task name" required>
+            <textarea name="description" id="description" cols="3" rows="3" placeholder="Description"></textarea>
+
+            <div class="deadline-prio-container">
+                <div class="deadline-container">
+                    <label for="deadline">Deadline:</label>
+                    <input type="date" id="deadline" name="deadline" required>
+                </div>
+                <div class="priority-container">
+                    <label for="priority">Priority:</label>
+                    <select id="priority" name="priority">
+                        <option value="high" class="high">High</option>
+                        <option value="medium" class="medium">Medium</option>
+                        <option value="low" class="low">Low</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="submit-task"><i class="fa-solid fa-circle-plus"></i>Add task</button>
+        </form>
+        <form id="edit-task-form" style="display: none;">
+            <h1>Edit Task</h1>
+            <!-- <label for="task">Task:</label> -->
+            <input type="text" id="edit-task" name="task" placeholder="Task name" required>
+            <textarea name="description" id="edit-description" cols="3" rows="3" placeholder="Description"></textarea>
+
+            <div class="deadline-prio-container">
+                <div class="deadline-container">
+                    <label for="deadline">Deadline:</label>
+                    <input type="date" id="deadline-edit" name="deadline" required>
+                </div>
+                <div class="priority-container">
+                    <label for="edit-priority">Priority:</label>
+                    <select id="edit-priority" name="priority">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+            </div>
+            <div class="edit-btns">
+                <button type="button" id="cancel-edit">Cancel</button>
+                <button type="submit" class="submit-task"><i class="fa-solid fa-pen-to-square"></i>Edit task</button>
+            </div>
+          
+        </form>
+    </header>
+    <main>    
+        <section id="tasks-list">
+            <form id="search-form">
+                <!-- search by name -->
+                <input type="text" id="search" name="search" placeholder="Seach task">
+                
+                <!-- sort -->
+                <label id="sort" for="sortBy">Sort by:</label>
+                <select id="sortBy" name="sortBy">
+                     <option value="deadline">Deadline</option>
+                     <option value="priority">Priority</option>
+                </select>
+                <select id="sortType" name="sortType">
+                    <option value="desc">Descending</option>
+                    <option value="asc">Ascending</option>
+               </select>
+
+               <!-- filter -->
+                <label id="filter" for="filterBy">Filter by:</label>
+                <select id="filterBy" name="filterBy">
+                    <option value="default">Default</option>
+                    <optgroup label="Status">
+                        <option value="completed">Completed</option>
+                        <option value="incomplete">Incomplete</option>
+                    </optgroup>
+                    <optgroup label="Priority">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </optgroup>
+               </select>
+           </form>
+             <h1 class="toDoTitle"><i class="fa-solid fa-list-check"></i>Tasks</h1>
+             
+
+           <!-- if there are no tasks -->
+           <h1 id="no-tasks" style="display: none;">There are no tasks yet</h1>
+
+           <!-- if there are no matches after search/filter -->
+           <h1 id="no-matches" style="display: none;">There are no matches</h1>
+
+             <ul id="tasks">
+             </ul>
+        </section>
+   </main>
+   <script src="./app.js" type="module"></script>
+   
+</body>
+
+</html>
