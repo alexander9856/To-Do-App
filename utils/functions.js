@@ -91,13 +91,7 @@ export const getTasks = () => {
     const filtering = filterBy.value;
 
     // search
-    if (search) {
-        tasks = tasks.filter(x => {
-            if (x.task.toLowerCase().includes(search.toLowerCase())) {
-                return x
-            }
-        })
-    }
+    if (search) tasks = tasks.filter(x => x.task.toLowerCase().includes(search.toLowerCase()))
 
     // sort
     const order = { 'high': 1, 'medium': 2, 'low': 3 };
