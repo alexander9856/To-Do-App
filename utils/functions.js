@@ -160,6 +160,7 @@ const onFilter = () => {
     ulTasks.innerHTML = "";
     if (tasks.length > 0) {
         noMatches.style.display = 'none';
+        noTasks.style.display = 'none';
         updateDom(tasks);
     }
     else {
@@ -263,29 +264,38 @@ const onFormSubmitEdit = (e) => {
 
 const onDelete = (e) => {
     let target = e.target;
-
     // if we click on fontawesome icon 
     if (target.classList.contains('fa-trash')) {
         target = target.parentNode;
     }
-
     const parent = target.parentNode.parentNode.parentNode;
-    const taskName = parent.children[1].textContent;
+
+    const taskName = parent.children[1].textContent.includes('Due to')
+        ? parent.children[1].textContent.split('Due to')[0]
+        : parent.children[1].textContent.split('Completed on')[0];
+
+    let tasksWithFilter = getTasks();
+    const allTasks = JSON.parse(localStorage.getItem('tasks'));
+    const selectedTaskFilter = tasksWithFilter.find(x => x.task == taskName);
+    const selectedTaskAll = allTasks.find(x => x.task == taskName);
+
+    const taskIndexAll = allTasks.indexOf(selectedTaskAll);
+    const taskIndexFiltered = tasksWithFilter.indexOf(selectedTaskFilter);
 
     const confirmation = confirm('Are you sure you want to delete this task?')
+
     if (confirmation) {
+        tasksWithFilter.splice(taskIndexFiltered, 1);
+        allTasks.splice(taskIndexAll, 1);
+        console.log(allTasks);
 
         // remove from localStorage
-        let tasks = JSON.parse(localStorage.getItem('tasks'));
-        const selectedTask = tasks.find(x => x.task == taskName);
-        const taskIndex = tasks.indexOf(selectedTask);
-        tasks.splice(taskIndex, 1);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('tasks', JSON.stringify(allTasks));
 
         // remove from DOM
         parent.remove();
-        if (tasks.length == 0) {
-            noTasks.style.display = 'block';
+        if (tasksWithFilter.length == 0) {
+            noMatches.style.display = 'block';
         }
 
         // if we try to delete while editing
