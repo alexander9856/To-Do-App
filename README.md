@@ -4,7 +4,7 @@ This is a To-Do App.
 
 You can:
 - add a to-do to the list
-- choose priority - <span style="color:red">Red</span>, <span style="color:yellow">Medium</span>, <span style="color:green">Green</span>
+- choose priority - High(red), Medium(yellow), Low(green)
 - search by name
 - sort by priority / deadline - Ascending / Descending
 - filter by status - completed or not
