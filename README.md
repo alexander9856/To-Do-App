@@ -1,12 +1,17 @@
 # To-Do-App
 
-This is a To-do app.
+This is a To-Do App.
+
 You can:
-- add a todo to the list
-- choose priority - High(red), Medium(yellow), Low(green)
+- add a to-do to the list
+- choose priority - <span style="color:red">Red</span>, <span style="color:yellow">Medium</span>, <span style="color:green">Green</span>
 - search by name
+- sort by priority / deadline - Ascending / Descending
 - filter by status - completed or not
 - filter by priority
+- edit name, description, change deadline
+- delete a to-do
+
 # 💻Technologies
 
  - Vanilla Javascript
